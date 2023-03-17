@@ -1,0 +1,56 @@
+[training@localhost ~]$ hadoop fs -ls/hbase/mytable/*/cf
+-ls/hbase/mytable/*/cf: Unknown command
+[training@localhost ~]$ hadoop fs -ls /hbase/mytable/*/cf
+[training@localhost ~]$ hadoop fs -ls /hbase/mytable/*/cf
+Found 1 items
+-rw-r--r--   1 hbase supergroup        646 2023-02-28 06:30 /hbase/mytable/401489b7687d3c8ef3415611a0fdc438/cf/f34cc1d66e064e17b1849d596659d4ae
+[training@localhost ~]$ hadoop fs -ls /hbase/mytable/*/cf
+Found 2 items
+-rw-r--r--   1 hbase supergroup        613 2023-02-28 06:33 /hbase/mytable/401489b7687d3c8ef3415611a0fdc438/cf/03001016979a48c391480d02832a5922
+-rw-r--r--   1 hbase supergroup        646 2023-02-28 06:30 /hbase/mytable/401489b7687d3c8ef3415611a0fdc438/cf/f34cc1d66e064e17b1849d596659d4ae
+[training@localhost ~]$ create 'user' , {NAME => 'info' , VERSIONS => 1}
+bash: create: command not found
+[training@localhost ~]$ create 'user' , {NAME => 'info' , VERSIONS => 1}
+bash: create: command not found
+[training@localhost ~]$ hbase org.apache.hadoop.hbase.io.hfile.HFile\
+> --printkv --file hdfs://localhost:8020/ 646 2023-02-28 06:30 /hbase/mytable/401489b7687d3c8ef3415611a0fdc438/cf/f34cc1d66e064e17b1849d596659d4ae
+Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/hadoop/hbase/io/hfile/HFile--printkv
+Caused by: java.lang.ClassNotFoundException: org.apache.hadoop.hbase.io.hfile.HFile--printkv
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:202)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:190)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+Could not find the main class: org.apache.hadoop.hbase.io.hfile.HFile--printkv.  Program will exit.
+[training@localhost ~]$ hadoop fs -ls /hbase/mytable/*/cfFound 1 items
+-rw-r--r--   1 hbase supergroup        679 2023-02-28 06:40 /hbase/mytable/401489b7687d3c8ef3415611a0fdc438/cf/fb3c23c2b92f4e21858b042f067231fc
+[training@localhost ~]$ hbase org.apache.hadoop.hbase.io.hfile.HFile--printkv --file hdfs://localhost:8020/hbase/mytable/401489b7687d3c8ef3415611a0fdc438/cf/fb3c23c2b92f4e21858b042f067231fc
+Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/hadoop/hbase/io/hfile/HFile--printkv
+Caused by: java.lang.ClassNotFoundException: org.apache.hadoop.hbase.io.hfile.HFile--printkv
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:202)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:190)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+Could not find the main class: org.apache.hadoop.hbase.io.hfile.HFile--printkv.  Program will exit.
+[training@localhost ~]$ hbase org.apache.hadoop.hbase.io.hfile.HFile--printkv --file hdfs://localhost:8020//hbase/mytable/401489b7687d3c8ef3415611a0fdc438/cf/fb3c23c2b92f4e21858b042f067231fc
+Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/hadoop/hbase/io/hfile/HFile--printkv
+Caused by: java.lang.ClassNotFoundException: org.apache.hadoop.hbase.io.hfile.HFile--printkv
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:202)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:190)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+Could not find the main class: org.apache.hadoop.hbase.io.hfile.HFile--printkv.  Program will exit.
+[training@localhost ~]$ hbase org.apache.hadoop.hbase.io.hfile.HFile --printkv --file hdfs://localhost:8020//hbase/mytable/401489b7687d3c8ef3415611a0fdc438/cf/fb3c23c2b92f4e21858b042f067231fc
+23/02/28 06:44:34 WARN conf.Configuration: hadoop.native.lib is deprecated. Instead, use io.native.lib.available
+23/02/28 06:44:34 WARN conf.Configuration: fs.default.name is deprecated. Instead, use fs.defaultFS
+23/02/28 06:44:35 INFO hfile.CacheConfig: Allocating LruBlockCache with maximum size 124.2m
+K: row1/cf:col/1677545711726/Put/vlen=3 V: foo
+K: row2/cf:col/1677545875028/Put/vlen=3 V: bar
+K: row3/cf:col/1677546220563/Put/vlen=3 V: mag
+Scanned kv count -> 3
+[training@localhost ~]$ 
